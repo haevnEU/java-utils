@@ -10,7 +10,6 @@ allprojects {
         mavenCentral()
     }
 
-    // Alle Artefakte an zentralem Ort ablegen
     buildDir = new File(rootProject.projectDir, "build/output/${project.name}")
 }
 
@@ -43,7 +42,6 @@ subprojects {
         implementation 'org.apache.commons:commons-lang3:3.16.0'
         implementation 'org.jetbrains:annotations:24.1.0'
 
-
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.0'
         testImplementation 'org.junit.jupiter:junit-jupiter-params:5.11.0'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.0'
@@ -51,5 +49,25 @@ subprojects {
 
     test {
         useJUnitPlatform()
+    }
+
+    apply plugin: 'maven-publish'
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/haevnEU/java-utils")
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
     }
 }
