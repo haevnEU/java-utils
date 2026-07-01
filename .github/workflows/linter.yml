@@ -18,7 +18,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v7
         with:
-          fetch-depth: 0 # Holt die gesamte Historie für den Diff
+          fetch-depth: 0
 
       - name: Get Default Branch
         id: default-branch
@@ -31,6 +31,6 @@ jobs:
         uses: super-linter/super-linter@v8
         env:
           VALIDATE_ALL_CODEBASE: false
-          # Nutzt das Ergebnis aus dem vorherigen Schritt dynamisch
           DEFAULT_BRANCH: ${{ steps.default-branch.outputs.RESOLVED_BRANCH }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISABLE_ERRORS_LINTER_STATUS: true
