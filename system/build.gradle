@@ -1,0 +1,8 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation project(':datastructures')
+    implementation project(':enumeration')
+}

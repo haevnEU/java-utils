@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    implementation project(':exceptions')
+    implementation project(':logger')
+    implementation project(':utils')
+    implementation project(':annotations')
+}
