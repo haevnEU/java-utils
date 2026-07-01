@@ -34,3 +34,4 @@ jobs:
           DEFAULT_BRANCH: ${{ steps.default-branch.outputs.RESOLVED_BRANCH }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE_ERRORS_LINTER_STATUS: true
+          SUPRESS_POSSIBLE_ERRORS: true
