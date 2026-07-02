@@ -2,9 +2,9 @@ name: Lint Code Base
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [main, master, develop]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 permissions:
   contents: read
@@ -23,9 +23,8 @@ jobs:
       - name: Get Default Branch
         id: default-branch
         run: |
-          # Ermittelt dynamisch, ob das Repo 'main' oder 'master' als Default nutzt
           DEFAULT_BR=$(git rev-parse --abbrev-ref origin/HEAD | sed 's/origin\///')
-          echo "RESOLVED_BRANCH=${DEFAULT_BR:-main}" >> $GITHUB_OUTPUT
+          echo "RESOLVED_BRANCH=${DEFAULT_BR:-main}" >> "$GITHUB_OUTPUT"
 
       - name: Lint Code Base
         uses: super-linter/super-linter@v8
